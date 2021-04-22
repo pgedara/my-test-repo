@@ -24,5 +24,29 @@ pipeline {
                 }
            }
        }
+
+        stage('main-build2'){
+           parallel {
+
+                stage('build2') {
+                    steps {
+                        sh 'echo building1'
+                    }   
+                }
+
+                stage('test2') {
+                    steps {
+                        sh 'echo testing'
+                    }
+                }
+
+                stage('clean2') {
+                    steps {
+                        sh 'echo cleaning'
+                    }
+                }
+           }
+       }
+
     }
 }
