@@ -1,26 +1,26 @@
 pipeline {
-    agent { docker { image 'alpine' } }
+    agent any
     stages {
  
        stage('main-build'){
            parallel {
 
                 stage('build') {
-                    agent { docker { image 'alpine' } }
+                    agent { label "pod" }
                     steps {
                         sh 'echo building1'
                     }   
                 }
 
                 stage('test') {
-                    agent { docker { image 'alpine' } }
+                    agent { label "pod" }
                     steps {
                         sh 'echo testing'
                     }
                 }
 
                 stage('clean') {
-                    agent { docker { image 'alpine' } }
+                    agent { label "pod" }
                     steps {
                         sh 'echo cleaning'
                     }
@@ -33,21 +33,21 @@ pipeline {
            parallel {
 
                 stage('build2') {
-                    agent { docker { image 'alpine' } }
+                    agent { label "pod" }
                     steps {
                         sh 'echo building1'
                     }   
                 }
 
                 stage('test2') {
-                    agent { docker { image 'alpine' } }
+                    agent { label "pod" }
                     steps {
                         sh 'echo testing'
                     }
                 }
 
                 stage('clean2') {
-                    agent { docker { image 'alpine' } }
+                    agent { label "pod" }
                     steps {
                         sh 'echo cleaning'
                     }
