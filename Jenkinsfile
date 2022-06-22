@@ -1,52 +1,11 @@
 pipeline {
-    agent { docker { image 'alpine' } }
+    agent any
     stages {
- 
-       stage('main-build'){
-           parallel {
-
-                stage('build') {
-                    steps {
-                        sh 'echo building1'
-                    }   
-                }
-
-                stage('test') {
-                    steps {
-                        sh 'echo testing'
-                    }
-                }
-
-                stage('clean') {
-                    steps {
-                        sh 'echo cleaning'
-                    }
-                }
-           }
-       }
-
-        stage('main-build2'){
-           parallel {
-
-                stage('build2') {
-                    steps {
-                        sh 'echo building1'
-                    }   
-                }
-
-                stage('test2') {
-                    steps {
-                        sh 'echo testing'
-                    }
-                }
-
-                stage('clean2') {
-                    steps {
-                        sh 'echo cleaning'
-                    }
-                }
-           }
-       }
-
+        stage('build') {
+            agent { label "pod" }
+            steps {
+                sh(label: "test1", script: "echo test1")
+            }   
+        }
     }
 }
