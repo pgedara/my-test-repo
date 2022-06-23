@@ -1,9 +1,4 @@
 pipeline {
-    when {
-        not {
-            changelog '.*^\\[ci skip\\] .+$'
-        }
-    }
     agent any
     stages {
 
@@ -14,6 +9,12 @@ pipeline {
         }
 
         stage('push') {
+            when {
+                branch "master"
+                not {
+                    changelog '.*^\\[ci skip\\] .+$'
+                }
+            }
             steps {
                 script{
                     //result = sh (script: "git log -1 | grep '.*\\[ci skip\\].*'", returnStatus: true)
