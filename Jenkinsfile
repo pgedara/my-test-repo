@@ -16,7 +16,7 @@ pipeline {
                     echo "this is a test" >> myfile.txt
                     git add .
                     git commit -m "test commit"
-                    git push origin master
+                    #git push origin master
                     '''
                     )
                 }
