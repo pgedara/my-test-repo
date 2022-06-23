@@ -16,7 +16,7 @@ pipeline {
                     echo "this is a test" >> myfile.txt
                     git add .
                     git commit --no-verify -m "test commit"
-                    git push --no-verify origin master
+                    #git push --no-verify origin master
                     '''
                     )
                 }
