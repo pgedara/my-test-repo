@@ -13,8 +13,7 @@ pipeline {
                     git config --global user.name "pgedara"
                     git remote set-url origin git@github.com:pgedara/my-test-repo.git
                     git checkout master
-                    touch myfile.txt
-                    echo "this is a test" > myfile.txt
+                    echo "this is a test" >> myfile.txt
                     git add .
                     git commit -m "test commit"
                     git push origin master
