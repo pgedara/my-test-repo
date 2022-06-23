@@ -9,7 +9,7 @@ pipeline {
 
                     // Clone source
                     sh(label: "Clone MSR", script: '''
-                    git config --global user.email "tools@mirantis.com"
+                    git config --global user.email "docker-ee-tooling@mirantis.com"
                     git config --global user.name "docker-ee-tooling"
                     git checkout master
                     touch myfile.txt
