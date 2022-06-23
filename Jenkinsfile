@@ -5,12 +5,12 @@ pipeline {
             steps {
                 sh(label: "test1", script: "echo test1")
 
-                sshagent (credentials: ['tools-github-ssh-key']) {
+                sshagent (credentials: ['pgedara-github-ssh-key']) {
 
                     // Clone source
                     sh(label: "Clone MSR", script: '''
-                    git config --global user.email "docker-ee-tooling@mirantis.com"
-                    git config --global user.name "docker-ee-tooling"
+                    git config --global user.email "pgedara@mirantis.com"
+                    git config --global user.name "pgedara"
                     git remote set-url origin git@github.com:pgedara/my-test-repo.git
                     git checkout master
                     touch myfile.txt
