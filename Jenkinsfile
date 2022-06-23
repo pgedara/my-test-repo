@@ -4,16 +4,20 @@ pipeline {
 
         stage('build') {
             steps{
-                scmSkip(deleteBuild: false, skipPattern:'.*\\[ci skip\\].*')
                 sh 'echo building........'
             }
         }
 
         stage('push') {
+            when {
+                not {
+                    changelog '.*^\\[ci skip\\] .+$'
+                }
+            }
             steps {
                 script{
-                    result = sh (script: "git log -1 | grep '.*\\[ci skip\\].*'", returnStatus: true)
-                    if (result != 0) {
+                    //result = sh (script: "git log -1 | grep '.*\\[ci skip\\].*'", returnStatus: true)
+                    //if (result != 0) {
                         sshagent (credentials: ['pgedara-github-ssh-key']) {
 
                             // Clone source
@@ -31,7 +35,7 @@ pipeline {
                             '''
                             )
                         }
-                    }
+                   // }
                 }
             }   
         }
