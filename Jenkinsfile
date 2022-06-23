@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        TAG = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
+    }
     stages {
 
         stage('build') {
@@ -27,9 +30,10 @@ pipeline {
                             git config --global user.name "pgedara"
                             git remote set-url origin git@github.com:pgedara/my-test-repo.git
                             git checkout master
-                            echo "this is a test" >> myfile.txt
-                            git add .
-                            git commit -m "[ci skip] test commit"
+                            #echo "this is a test" >> myfile.txt
+                            sed '/^image_tag /s/=.*$/= ${TAG}/' ./deploy/terraform/system.auto.tfvars
+                            git add ./deploy/terraform/system.auto.tfvars
+                            git commit -m "[ci skip] Terraform configs updated with the latest image tag"
                             git push origin master
                             echo "pathmasri1"
                             # test1
