@@ -31,7 +31,7 @@ pipeline {
                             git remote set-url origin git@github.com:pgedara/my-test-repo.git
                             git checkout master
                             #echo "this is a test" >> myfile.txt
-                            sed -i '/^image_tag /s/=.*$/= ${TAG}/' ./deploy/terraform/system.auto.tfvars
+                            sed -i '/^image_tag /s/=.*$/= "${TAG}"/' ./deploy/terraform/system.auto.tfvars
                             git add ./deploy/terraform/system.auto.tfvars
                             git commit -m "[ci skip] Terraform configs updated with the latest image tag"
                             git push origin master
