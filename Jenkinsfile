@@ -11,7 +11,7 @@ pipeline {
                     sh(label: "Clone MSR", script: '''
                     git config --global user.email "docker-ee-tooling@mirantis.com"
                     git config --global user.name "docker-ee-tooling"
-                    git remote add origin git@github.com:pgedara/my-test-repo.git
+                    git remote set-url origin git@github.com:pgedara/my-test-repo.git
                     git checkout master
                     touch myfile.txt
                     echo "this is a test" > myfile.txt
