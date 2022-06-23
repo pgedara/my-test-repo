@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script{
                     result = sh (script: "git log -1 | grep '.*\\[ci skip\\].*'", returnStatus: true)
-                    if (result == 0) {
+                    if (result != 0) {
                         sshagent (credentials: ['pgedara-github-ssh-key']) {
 
                             // Clone source
