@@ -18,6 +18,7 @@ pipeline {
                     git add .
                     git commit -m "[ci skip] test commit"
                     git push origin master
+                    echo "pathmasri"
                     # test
                     '''
                     )
