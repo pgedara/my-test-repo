@@ -4,7 +4,7 @@ pipeline {
 
         stage('build') {
             steps{
-                scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+                scmSkip(deleteBuild: false, skipPattern:'.*\\[ci skip\\].*')
                 sh 'echo building........'
             }
         }
