@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
                 sh(label: "test1", script: "echo test1")
 
                 sshagent (credentials: ['pgedara-github-ssh-key']) {
@@ -15,8 +16,8 @@ pipeline {
                     git checkout master
                     echo "this is a test" >> myfile.txt
                     git add .
-                    git commit --no-verify -m "test commit"
-                    #git push --no-verify origin master
+                    git commit -m "[ci skip] test commit"
+                    git push origin master
                     '''
                     )
                 }
