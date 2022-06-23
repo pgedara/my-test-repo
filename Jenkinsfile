@@ -1,9 +1,16 @@
 pipeline {
     agent any
     stages {
+
         stage('build') {
+            steps{
+                scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+                sh 'echo building........'
+            }
+        }
+
+        stage('push') {
             steps {
-                scmSkip(deleteBuild: false, skipPattern:'.*\\[ci skip\\].*')
                 sh(label: "test1", script: "echo test1")
 
                 sshagent (credentials: ['pgedara-github-ssh-key']) {
