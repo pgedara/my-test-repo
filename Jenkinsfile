@@ -1,5 +1,7 @@
 pipeline {
-    agent { docker { image 'alpine' } }
+    agent {
+        label 'pod'
+    }
     stages {
  
        stage('main-build'){
