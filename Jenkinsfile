@@ -10,7 +10,7 @@ pipeline {
                     sh '''
                         mkdir -p my-repo
                         cd my-repo
-                        git clone git@github.com:Mirantis/dhe-deploy.git .
+                        git clone git@github.com:Mirantis/harbor.git .
                     '''
                 }
             }
