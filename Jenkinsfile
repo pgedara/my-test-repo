@@ -6,9 +6,13 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git credentialsId: 'distribution-github-ssh-key',
-                    url: 'git@github.com:docker/dhe-deploy.git',
-                    branch: 'main'
+                sshagent (credentials: ['distribution-github-ssh-key']) {
+                    sh '''
+                        mkdir -p my-repo
+                        cd my-repo
+                        git clone git@github.com:docker/dhe-deploy.git .
+                    '''
+                }
             }
         }
 
