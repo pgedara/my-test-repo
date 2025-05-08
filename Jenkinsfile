@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'pod'
+        label 'pod && big'
     }
     stages {
  
@@ -52,3 +52,7 @@ pipeline {
 
     }
 }
+
+
+
+
