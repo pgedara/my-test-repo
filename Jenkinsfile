@@ -8,6 +8,7 @@ pipeline {
             steps {
                 sshagent (credentials: ['distribution-github-ssh-key']) {
                     sh '''
+                        cat ~/.ssh/known_hosts
                         mkdir -p my-repo
                         cd my-repo
                         git clone git@github.com:Mirantis/harbor.git .
